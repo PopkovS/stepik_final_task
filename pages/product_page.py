@@ -20,6 +20,13 @@ class ProductPage(BasePage):
         product_name_in_message = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_MESSAGE).text
         return product_name_in_message
 
+    def should_not_be_product_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.PRODUCT_NAME_IN_MESSAGE), "Product messages should " \
+                                                                                          "not be "
+
+    def should_be_disappear_product_message(self):
+        assert self.is_disappeared(*ProductPageLocators.PRODUCT_NAME_IN_MESSAGE), "Product message did not disappear"
+
     def should_be_some_price_for_product_and_in_basket(self, price_to_compare):
         price_on_pages_on_product = self.browser.find_element(*ProductPageLocators.PRICE_ON_PAGES_OF_PRODUCT).text
         assert price_on_pages_on_product == price_to_compare, f"Price product: \"{price_on_pages_on_product}\" " \

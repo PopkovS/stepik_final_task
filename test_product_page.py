@@ -16,3 +16,26 @@ def test_guest_can_add_product_to_basket(browser, numlink):
     product_page.add_to_basket_from_product_page()
     product_page.solve_quiz_and_get_code()
     product_page.should_be_product_page()
+
+@pytest.mark.xfail(reason="This test should fall")
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.add_to_basket_from_product_page()
+    product_page.solve_quiz_and_get_code()
+    product_page.should_not_be_product_message()
+
+def test_guest_cant_see_success_message(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.should_not_be_product_message()
+
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.add_to_basket_from_product_page()
+    product_page.solve_quiz_and_get_code()
+    product_page.should_be_disappear_product_message()
