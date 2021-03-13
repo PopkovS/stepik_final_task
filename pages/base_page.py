@@ -5,6 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from .locators import BasePageLocators, BasketPageLocators
 
+main_link = "http://lk.corp.ast.safib.ru/"
+
 
 class BasePage():
     def __init__(self, browser, url, timeout=3):
@@ -70,5 +72,3 @@ class BasePage():
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                      " probably unauthorised user"
-
-
